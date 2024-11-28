@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.portfolio.selenium.example.pages.FormPage;
 import org.portfolio.selenium.example.config.ConfigLoader;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -21,9 +22,12 @@ public class FormTest {
 
     @BeforeMethod
     public void setUp() {
+        WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         options.addArguments("--disable-gpu");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--remote-allow-origins=*");
         options.addArguments("--window-size=1920,1080");
         options.addArguments("--no-sandbox");
         driver = new ChromeDriver(options);
