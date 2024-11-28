@@ -13,7 +13,7 @@ import org.portfolio.selenium.example.pages.FormPage;
 import org.portfolio.selenium.example.config.ConfigLoader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.testng.Assert.assertTrue;
 
 public class FormTest {
 
