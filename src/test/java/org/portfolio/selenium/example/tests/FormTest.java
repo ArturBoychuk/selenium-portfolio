@@ -1,6 +1,7 @@
 package org.portfolio.selenium.example.tests;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.portfolio.selenium.example.helpers.PageManager;
 import org.junit.After;
 import org.junit.Before;
@@ -19,8 +20,12 @@ public class FormTest {
 
     @Before
     public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--no-sandbox");
+        driver = new ChromeDriver(options);
         driver.get(ConfigLoader.getProperty("BASE_URL"));
 
         pageManager = new PageManager(driver);
