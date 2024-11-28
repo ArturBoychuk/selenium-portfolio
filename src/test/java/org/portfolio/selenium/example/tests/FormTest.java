@@ -3,22 +3,23 @@ package org.portfolio.selenium.example.tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.portfolio.selenium.example.helpers.PageManager;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.portfolio.selenium.example.pages.FormPage;
 import org.portfolio.selenium.example.config.ConfigLoader;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FormTest {
 
     private WebDriver driver;
     private PageManager pageManager;
 
-    @Before
+    @BeforeMethod
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
@@ -75,10 +76,10 @@ public class FormTest {
         boolean isPhoneFieldInvalid = driver.findElement(
                 By.cssSelector("#userNumber-wrapper .form-control:invalid")
         ).isDisplayed();
-        assertTrue("Invalid phone number field is not displayed", isPhoneFieldInvalid);
+        assertTrue(isPhoneFieldInvalid);
     }
 
-    @After
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }
