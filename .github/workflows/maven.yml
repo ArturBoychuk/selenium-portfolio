@@ -33,12 +33,21 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2
 
+      # Install Google Chrome
+      - name: Install Google Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      # Install ChromeDriver
+      - name: Install ChromeDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          wget https://chromedriver.storage.googleapis.com/$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip -d /usr/local/bin/
+          chmod +x /usr/local/bin/chromedriver
+
       # Install dependencies and run tests
       - name: Run Maven tests
         run: mvn clean test
-
-      # Set up ChromeDriver
-      - name: Set up ChromeDriver
-        uses: Nanitor/chromedriver-action@v3
-        with:
-          version: 'latest'
